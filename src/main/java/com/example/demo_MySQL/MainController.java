@@ -6,28 +6,29 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo_MySQL.DAO_services.CommandLineService;
 import com.example.demo_MySQL.DAO_services.CommandService;
+import com.example.demo_MySQL.DAO_services.PaymentService;
 import com.example.demo_MySQL.DAO_services.RoleService;
 import com.example.demo_MySQL.DAO_services.UserInformationService;
 import com.example.demo_MySQL.DAO_services.UserService;
 import com.example.demo_MySQL.entities.Command;
 import com.example.demo_MySQL.entities.CommandLine;
+import com.example.demo_MySQL.entities.Payment;
 import com.example.demo_MySQL.entities.Role;
 import com.example.demo_MySQL.entities.User;
 import com.example.demo_MySQL.entities.UserInformation;
-import com.example.demo_MySQL.repositories.CommandRepository;
+
 
 @Controller 
 @RequestMapping(path="/demo") 
 public class MainController {
+    
+    @Autowired
+    private PaymentService servicePayment;
     
     @Autowired
     private RoleService serviceRole;
@@ -70,6 +71,11 @@ public class MainController {
         return serviceRole.listAll();
     }
    
+    
+    @GetMapping(path="/payments")
+    public @ResponseBody List<Payment> getAllPayments() {
+        return servicePayment.listAll();
+    }
     
    
 }

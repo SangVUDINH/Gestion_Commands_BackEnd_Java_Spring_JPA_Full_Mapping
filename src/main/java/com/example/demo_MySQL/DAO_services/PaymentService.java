@@ -7,21 +7,18 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo_MySQL.entities.Role;
-import com.example.demo_MySQL.repositories.RoleRepository;
-
-
-
+import com.example.demo_MySQL.entities.Payment;
+import com.example.demo_MySQL.repositories.PaymentRepository;
 
 
 @Service
 @Transactional
-public class RoleService {
+public class PaymentService {
     
     @Autowired
-    private RoleRepository repo;
+    private PaymentRepository repo;
     
-    public List<Role> listAll() {
+    public List<Payment> listAll() {
         return repo.findAll();
     }
 

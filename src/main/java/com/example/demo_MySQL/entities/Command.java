@@ -10,8 +10,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -38,6 +40,12 @@ public class Command {
     @OneToMany(targetEntity=CommandLine.class,mappedBy="command")
     private List<CommandLine> commandlines = new ArrayList<>();
     
+    @OneToOne
+    @JoinTable(name="t_commands_payments_associations",
+            joinColumns=@JoinColumn(name="idcommand"),
+            inverseJoinColumns=@JoinColumn(name="idpayment"))
+    private Payment payment ;
+    
     
     public String getUserlogin() {
         if (user == null) {
@@ -55,9 +63,17 @@ public class Command {
     public Command() {
         
     }
-
-
     
+    public Payment getPayment() {
+        return payment;
+    }
+
+
+    public void setPayment( Payment payment ) {
+        this.payment = payment;
+    }
+
+
     public List<CommandLine> getCommandlines() {
         return commandlines;
     }
