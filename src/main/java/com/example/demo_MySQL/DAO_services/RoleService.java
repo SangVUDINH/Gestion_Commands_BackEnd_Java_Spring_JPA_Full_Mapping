@@ -7,18 +7,18 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo_MySQL.entities.CommandLine;
-import com.example.demo_MySQL.repositories.CommandLineRepository;
+import com.example.demo_MySQL.entities.Role;
+import com.example.demo_MySQL.repositories.RoleRepository;
 
 
 @Service
 @Transactional
-public class CommandLineService {
+public class RoleService {
     
     @Autowired
-    private CommandLineRepository repo;
+    private RoleRepository repo;
     
-    public List<CommandLine> listAll() {
+    public List<Role> listAll() {
         return repo.findAll();
     }
 

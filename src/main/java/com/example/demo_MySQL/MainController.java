@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo_MySQL.DAO_services.CommandLineService;
 import com.example.demo_MySQL.DAO_services.CommandService;
+import com.example.demo_MySQL.DAO_services.RoleService;
 import com.example.demo_MySQL.DAO_services.UserInformationService;
 import com.example.demo_MySQL.DAO_services.UserService;
 import com.example.demo_MySQL.entities.Command;
 import com.example.demo_MySQL.entities.CommandLine;
+import com.example.demo_MySQL.entities.Role;
 import com.example.demo_MySQL.entities.User;
 import com.example.demo_MySQL.entities.UserInformation;
 import com.example.demo_MySQL.repositories.CommandRepository;
@@ -26,6 +28,9 @@ import com.example.demo_MySQL.repositories.CommandRepository;
 @Controller 
 @RequestMapping(path="/demo") 
 public class MainController {
+    
+    @Autowired
+    private RoleService serviceRole;
           
     @Autowired
     private CommandService serviceCMD;
@@ -58,6 +63,11 @@ public class MainController {
     @GetMapping(path="/commandlines")
     public @ResponseBody List<CommandLine> getAllCommandLines() {
         return serviceCMDLine.listAll();
+    }
+    
+    @GetMapping(path="/roles")
+    public @ResponseBody List<Role> getAllRoles() {
+        return serviceRole.listAll();
     }
    
     
